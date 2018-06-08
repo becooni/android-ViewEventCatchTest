@@ -1,7 +1,11 @@
 package com.jakecho.viewtest;
 
-import java.lang.reflect.Field;
-import java.util.List;
+import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * @author Jake
@@ -9,11 +13,49 @@ import java.util.List;
  */
 public class Quiz2 {
 
-    private void main() throws ClassNotFoundException, NoSuchFieldException {
+    private static Intent intent;
 
-        Class c = Class.forName("MainActivity");
+    public static void start(Activity activity) {
+        findContentView(activity.getWindow().getDecorView());
+//        intent = new Intent(activity, TouchTrackingService.class);
+//        activity.startService(intent);
+    }
 
-        Field f = c.getDeclaredField("mViewList");
+    // find ContentFrameLayout view group
+    private static void findContentView(View parent) {
+        if (parent instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) parent;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View childView = viewGroup.getChildAt(i);
+                if (parent.getClass().getSimpleName().equals("ContentFrameLayout")) {
+                    printViewHasListener(childView);
+                    break;
+                } else {
+                    findContentView(childView);
+                }
+            }
+        }
+    }
+
+    private static void printViewHasListener(final View parent) {
+        if (parent instanceof TextView) {
+            if (parent.hasOnClickListeners()) {
+                Log.d("Quiz 2", String.valueOf(((TextView) parent).getText()));
+            }
+        }
+
+        if (parent instanceof ViewGroup) {
+
+            ViewGroup viewGroup = (ViewGroup) parent;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                printViewHasListener(viewGroup.getChildAt(i));
+            }
+        }
+    }
+
+    public static void unregister(Activity activity) {
+        activity.stopService(intent);
+        intent = null;
     }
 
 }
