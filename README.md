@@ -1,4 +1,4 @@
-# ViewTest
+# View Event Catch Test
 Find and catch View's event test in Android
 
 # Environment
