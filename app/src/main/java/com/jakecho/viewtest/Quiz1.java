@@ -22,7 +22,7 @@ public class Quiz1 extends AppCompatActivity {
 
     private static final int REQUEST_OVERLAY_PERMISSION = 99;
 
-    private static int MAX_VIEW_COUNT = 50;
+    private static int MAX_VIEW_COUNT = 2000;
 
     private static int MAX_LISTENER_COUNT = (int) (MAX_VIEW_COUNT * 0.3);
 
