@@ -29,7 +29,7 @@ Find and catch View's event test in Android
    - listener 설정을 전체 View의 30%(600번) 반복
    
 > 출제자에게 문의한 결과, App을 외부에서 타앱으로 접근한다고 가정하는데, 이는 불가능하기 때문에 자사 서비스와 비슷한 구현을 원하는 것으로 판단하여
-> Acitivty를 파라미터로 받는 메소드를 구현하여 진행
+> Acitivty를 참조하는 클래스 생성
 
 ### 2. 외부에서 접근하기
 #### Click Listener 설정된 View 찾기
